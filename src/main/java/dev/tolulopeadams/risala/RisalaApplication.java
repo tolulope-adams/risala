@@ -1,7 +1,7 @@
 package dev.tolulopeadams.risala;
 
 import dev.tolulopeadams.risala.model.User;
-import dev.tolulopeadams.risala.repository.UserRepository;
+import dev.tolulopeadams.risala.model.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

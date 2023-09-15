@@ -2,6 +2,8 @@ package dev.tolulopeadams.risala.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+
 @Table(name = "users")
 @Entity
 public class User {
@@ -9,12 +11,10 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="user_id", nullable=false, unique=true)
     private Long userId;
-
     @Column(name="user_name", nullable=false)
     private String userName;
     @Column(name="email", nullable=false, unique=true)
     private String email;
-
     @Column(name="pass_hash", nullable=false)
     private String passwordHash;
     @Column(name="pass_salt", nullable=false, unique=true)
@@ -26,7 +26,6 @@ public class User {
 
     public User(String email, String passwordHash, String passwordSalt){
         this.email = email;
-        this.userName = email;
         this.passwordHash = passwordHash;
         this.passwordSalt = passwordSalt;
     }
