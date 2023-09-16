@@ -2,43 +2,34 @@ package dev.tolulopeadams.risala.model;
 
 import jakarta.persistence.*;
 
-@Table(name = "likes")
 @Entity
 public class Like {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="like_id", nullable=false, unique=true)
-    private int likeId;
-    @Column(name="content_id", nullable=false, unique=true)
-    private int contentId;
-    @Column(name="user_id", nullable=false, unique=true)
-    private int user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "like_id", nullable = false)
+    private Long likeId;
+
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     public Like(){
 
     }
 
-    public int getLikeId() {
+    public Long getLikeId() {
         return likeId;
     }
 
-    public void setLikeId(int likeId) {
+    public void setLikeId(Long likeId) {
         this.likeId = likeId;
     }
 
-    public int getContentId() {
-        return contentId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setContentId(int contentId) {
-        this.contentId = contentId;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

@@ -18,12 +18,11 @@ public class RisalaApplication {
 	public CommandLineRunner run(UserRepository repository){
 		return args -> {
 			insertUsers(repository);
-			System.out.println(repository.findByUserId(1L).get(0).toString());
 		};
 	}
 
 	private void insertUsers(UserRepository repository) {
-		repository.save(new User("Dalia", "Tolu", "Tobi"));
-		repository.save(new User("Dali", "Tol", "Tob"));
+//		repository.save(new User("Dalia", "Tolu", "Tobi"));
+//		repository.save(new User("Dali", "Tol", "Tob"));
 	}
 }
