@@ -10,6 +10,11 @@ public class HomeController {
     public String welcome() {
 //        User user = new User("John Doe", "john@example.com"); // Replace with your user data
 //        model.addAttribute("user", user);
-        return "index"; // Return the template name without the .html extension
+        return "thyme"; // Return the template name without the .html extension
+    }
+
+    @GetMapping("/react-app/**")
+    public String reactApp() {
+        return "forward:/react-app/index.html";
     }
 }

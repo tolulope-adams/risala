@@ -3,26 +3,28 @@ package dev.tolulopeadams.risala.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "posts")
 @Entity
 public class Post extends Content {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @JoinColumn(name="post_id", nullable=false, unique=true)
-    private Long postId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id", unique = true)
+    private User user;
 
-    @OneToMany(mappedBy = "commentId",
-            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private ArrayList<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Comment> comments;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "like_id")
+    private final List<Like> likes;
 
     public Post(){
+        this.comments = new ArrayList<>();
+        this.likes = new ArrayList<>();
 
     }
-
-    public ArrayList<Comment> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -32,5 +34,25 @@ public class Post extends Content {
 
     public void removeComment(Comment comment) {
         this.comments.remove(comment);
+    }
+
+    public List<Like> getLikes() {
+        return likes;
+    }
+
+    public void addLike(Like like) {
+        this.likes.add(like);
+    }
+
+    public void removeLike(Like like) {
+        this.likes.remove(like);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

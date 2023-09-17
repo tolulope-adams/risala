@@ -21,14 +21,14 @@ public class User {
     @Column(name="pass_salt", nullable=false, unique=true)
     private String passwordSalt;
 
-    @OneToMany(mappedBy = "postId",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<Post> posts = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<Post> posts;
 
     public User(){
-
+        posts = new ArrayList<>();
+    }
+    public List<Post> getPosts() {
+        return posts;
     }
 
     public void addPost(Post post) {

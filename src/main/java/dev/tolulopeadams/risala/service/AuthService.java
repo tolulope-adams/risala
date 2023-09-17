@@ -1,7 +1,5 @@
 package dev.tolulopeadams.risala.service;
 
-import org.springframework.util.DigestUtils;
-
 public class AuthService {
 
     // Hash a password using SHA-256

@@ -1,6 +1,5 @@
 package dev.tolulopeadams.risala;
 
-import dev.tolulopeadams.risala.model.User;
 import dev.tolulopeadams.risala.model.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +21,6 @@ public class RisalaApplication {
 	}
 
 	private void insertUsers(UserRepository repository) {
-//		repository.save(new User("Dalia", "Tolu", "Tobi"));
-//		repository.save(new User("Dali", "Tol", "Tob"));
+		System.out.println("In");
 	}
 }
