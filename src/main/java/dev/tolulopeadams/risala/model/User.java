@@ -27,6 +27,14 @@ public class User {
     public User(){
         posts = new ArrayList<>();
     }
+
+    public User(String email){
+      this.email = email;
+      this.userName = email;
+      this.passwordHash = email;
+      this.passwordSalt = email;
+      this.posts = new ArrayList<>();
+    }
     public List<Post> getPosts() {
         return posts;
     }

@@ -13,14 +13,4 @@ public class RisalaApplication {
 		SpringApplication.run(RisalaApplication.class, args);
 	}
 
-	@Bean
-	public CommandLineRunner run(UserRepository repository){
-		return args -> {
-			insertUsers(repository);
-		};
-	}
-
-	private void insertUsers(UserRepository repository) {
-		System.out.println("In");
-	}
 }
