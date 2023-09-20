@@ -1,4 +1,4 @@
-package dev.tolulopeadams.risala.controller;
+package dev.tolulopeadams.risala.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package dev.tolulopeadams.risala.model;
+package dev.tolulopeadams.risala.persistence.model;
 
 import jakarta.persistence.*;
 

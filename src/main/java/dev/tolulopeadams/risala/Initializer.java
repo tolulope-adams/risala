@@ -1,7 +1,7 @@
 package dev.tolulopeadams.risala;
 
-import dev.tolulopeadams.risala.model.User;
-import dev.tolulopeadams.risala.model.repository.UserRepository;
+import dev.tolulopeadams.risala.persistence.model.User;
+import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

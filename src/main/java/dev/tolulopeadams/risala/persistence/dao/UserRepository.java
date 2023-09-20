@@ -1,6 +1,6 @@
-package dev.tolulopeadams.risala.model.repository;
+package dev.tolulopeadams.risala.persistence.dao;
 
-import dev.tolulopeadams.risala.model.User;
+import dev.tolulopeadams.risala.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 

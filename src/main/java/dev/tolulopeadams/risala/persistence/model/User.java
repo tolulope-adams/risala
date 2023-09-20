@@ -1,4 +1,4 @@
-package dev.tolulopeadams.risala.model;
+package dev.tolulopeadams.risala.persistence.model;
 
 import jakarta.persistence.*;
 
@@ -29,10 +29,10 @@ public class User {
     }
 
     public User(String email){
-      this.email = email;
-      this.userName = email;
-      this.passwordHash = email;
-      this.passwordSalt = email;
+      this.setEmail(email);
+      this.setUserName(email);
+      this.setPasswordHash(email);
+      this.setPasswordSalt(email);
       this.posts = new ArrayList<>();
     }
     public List<Post> getPosts() {
@@ -50,8 +50,48 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + this.userId + ";" +
-                "userName=" + this.userName + ";" +
+                "userId=" + this.getUserId() + ";" +
+                "userName=" + this.getUserName() + ";" +
                 "}";
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public String getPasswordSalt() {
+        return passwordSalt;
+    }
+
+    public void setPasswordSalt(String passwordSalt) {
+        this.passwordSalt = passwordSalt;
     }
 }
