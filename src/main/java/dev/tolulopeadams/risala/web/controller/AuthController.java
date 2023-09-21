@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthController {
 
+    @GetMapping("/home")
+    public String home() {
+        return "index";
+    }
+
     @GetMapping("/signup")
     public String signup() {
-        return "signup"; // Return the template name without the .html extension
+        return "signup";
     }
 
     @GetMapping("/login")
