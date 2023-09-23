@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/signup.css">
+    <link rel="stylesheet" href="/css/signup.css">
     <title>Title</title>
 </head>
 <body>
@@ -14,22 +14,21 @@
         </div>
         <div class="right-side">
             <h2 class="form-header">Create Account</h2>
-            <form method="post" action="">
-            <i class="fa fa-user icon"></i>
-            <input type="text" placeholder="Name">
+            <form id="signupForm" th:action="@{/user/registration}" method="post">
 
-            <i class="fa fa-envelope icon"></i>
-            <input type="email" placeholder="Email">
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email" name="email">
+                <input type="password" placeholder="Password" name="password">
+                <input type="password" placeholder="Confirm Password">
 
-            <i class="fa fa-phone icon"></i>
-            <input type="text" placeholder="Password">
+                <button type="submit" class="btn-signup">SIGN UP</button>
 
-            <i class="fa fa-phone icon"></i>
-            <input type="text" placeholder="Confirm Password">
-
-            <button type="submit" class="btn-signup">SIGN UP</button>
             </form>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/signup.js"></script>
+
 </body>
 </html>

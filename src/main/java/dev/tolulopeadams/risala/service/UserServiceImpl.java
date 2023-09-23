@@ -1,0 +1,59 @@
+package dev.tolulopeadams.risala.service;
+
+import dev.tolulopeadams.risala.persistence.dao.UserRepository;
+import dev.tolulopeadams.risala.persistence.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import java.security.SecureRandom;
+import java.util.Arrays;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public void registerUser(String email, String password){
+        this.save(this.createUser(email, password));
+    }
+
+    @Override
+    public User createUser(String email, String password){
+        User user = new User();
+        user.setEmail(email);
+        user.setPasswordSalt(this.generateSalt());
+        user.setPasswordHash(this.encodePassword(
+                password, user.getPasswordSalt(), bCryptPasswordEncoder)
+        );
+        return user;
+    }
+
+    @Override
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
+
+    public String generateSalt(){
+        SecureRandom random = new SecureRandom();
+        byte[] salt = new byte[16];
+        random.nextBytes(salt);
+        return Arrays.toString(salt);
+    }
+
+    public String encodePassword(String password, String salt, PasswordEncoder passwordEncoder) {
+        return passwordEncoder.encode(password + salt);
+    }
+}

@@ -1,6 +1,5 @@
 package dev.tolulopeadams.risala;
 
-import dev.tolulopeadams.risala.persistence.model.User;
 import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -16,13 +15,11 @@ class Initializer implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        System.out.println("Initializing repositoreis");
+        System.out.println("Initializing repositories");
         insertUsers(userRepository);
         System.out.println(userRepository.count());
     }
 
     private void insertUsers(UserRepository repository) {
-        repository.save(new User("tolu"));
-
     }
 }

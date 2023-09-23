@@ -13,8 +13,9 @@ public class RisalaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RisalaApplication.class, args);
 	}
+
 	@Bean
-	public PasswordEncoder bCryptPasswordEncoder(){
+	public BCryptPasswordEncoder bCryptPasswordEncoder(){
 		return new BCryptPasswordEncoder();
 	}
 

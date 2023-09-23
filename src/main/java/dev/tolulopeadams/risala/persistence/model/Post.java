@@ -12,41 +12,41 @@ public class Post extends Content {
     @JoinColumn(name = "author_id", unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<Comment> comments;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "like_id")
-    private final List<Like> likes;
+////    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private final List<Comment> comments;
+//
+////    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+////    @JoinColumn(name = "like_id")
+//    private final List<Like> likes;
 
     public Post(){
-        this.comments = new ArrayList<>();
-        this.likes = new ArrayList<>();
+//        this.comments = new ArrayList<>();
+//        this.likes = new ArrayList<>();
 
     }
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void addComment(Comment comment) {
-        this.comments.add(comment);
-    }
-
-    public void removeComment(Comment comment) {
-        this.comments.remove(comment);
-    }
-
-    public List<Like> getLikes() {
-        return likes;
-    }
-
-    public void addLike(Like like) {
-        this.likes.add(like);
-    }
-
-    public void removeLike(Like like) {
-        this.likes.remove(like);
-    }
+//    public List<Comment> getComments() {
+//        return comments;
+//    }
+//
+//    public void addComment(Comment comment) {
+//        this.comments.add(comment);
+//    }
+//
+//    public void removeComment(Comment comment) {
+//        this.comments.remove(comment);
+//    }
+//
+//    public List<Like> getLikes() {
+//        return likes;
+//    }
+//
+//    public void addLike(Like like) {
+//        this.likes.add(like);
+//    }
+//
+//    public void removeLike(Like like) {
+//        this.likes.remove(like);
+//    }
 
     public User getUser() {
         return user;

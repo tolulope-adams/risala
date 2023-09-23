@@ -5,15 +5,10 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+public class Comment {
 
-@Entity
-public class Comment extends Content{
-    @ManyToOne
-    @JoinColumn(name = "post_id")
     private Post post;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "like_id")
     private final List<Like> likes;
 
 

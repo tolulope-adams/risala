@@ -12,7 +12,9 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="user_id", nullable=false, unique=true)
     private Long userId;
-    @Column(name="user_name", nullable=false)
+
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    @Column(name="user_name", unique = true)
     private String userName;
     @Column(name="email", nullable=false, unique=true)
     private String email;
@@ -28,13 +30,6 @@ public class User {
         posts = new ArrayList<>();
     }
 
-    public User(String email){
-      this.setEmail(email);
-      this.setUserName(email);
-      this.setPasswordHash(email);
-      this.setPasswordSalt(email);
-      this.posts = new ArrayList<>();
-    }
     public List<Post> getPosts() {
         return posts;
     }
