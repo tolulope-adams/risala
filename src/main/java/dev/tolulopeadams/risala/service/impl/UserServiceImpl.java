@@ -1,7 +1,8 @@
-package dev.tolulopeadams.risala.service;
+package dev.tolulopeadams.risala.service.impl;
 
 import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import dev.tolulopeadams.risala.persistence.model.User;
+import dev.tolulopeadams.risala.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

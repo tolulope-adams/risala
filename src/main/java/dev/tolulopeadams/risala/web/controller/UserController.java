@@ -3,12 +3,10 @@ package dev.tolulopeadams.risala.web.controller;
 import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import dev.tolulopeadams.risala.persistence.model.User;
 import dev.tolulopeadams.risala.requestbody.UserRequestBody;
-import dev.tolulopeadams.risala.service.UserServiceImpl;
+import dev.tolulopeadams.risala.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,12 +39,12 @@ public class UserController {
         if(user != null){
 //            ResponseEntity.status(HttpStatus.BAD_REQUEST)
 //                    .body("An account with that email address already exists");
-            return "redirect:/welcome";
+            return "welcome";
         }
 
         userServiceImpl.registerUser(requestBody.getEmail(), requestBody.getPassword());
 //        return ResponseEntity.ok("User registration successful").;
-        return "redirect:/welcome";
+        return "welcome";
 
     }
 
