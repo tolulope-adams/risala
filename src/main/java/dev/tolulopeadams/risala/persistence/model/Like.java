@@ -1,7 +1,5 @@
 package dev.tolulopeadams.risala.persistence.model;
 
-import jakarta.persistence.*;
-
 //@Entity
 public class Like {
     private Long likeId;

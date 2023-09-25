@@ -2,9 +2,6 @@ package dev.tolulopeadams.risala.persistence.model;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Table(name = "posts")
 @Entity
 public class Post extends Content {

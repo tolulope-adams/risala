@@ -1,3 +1,5 @@
+//var serverContext = [[@{/}]];
+
 $(document).ready(function () {
     $('#signupForm').submit(function (event) {
         event.preventDefault();
@@ -13,9 +15,19 @@ $(document).ready(function () {
             type: 'POST',
             url: '/user/registration',
             contentType: 'application/json',
+            data
             data: JSON.stringify(formData),
             success: function (response) {
                 console.log('Form submitted successfully:', response);
+                console.log(response.redirectUrl)
+                if (response.redirectUrl) {
+
+                    // Redirect to the specified URL
+                    window.location.href = response.redirectUrl;
+                } else {
+                    console.log("Not redirect")
+                    // Handle other responses or update the DOM
+                }
             },
             error: function (error) {
                 console.error('Error submitting form:', error);

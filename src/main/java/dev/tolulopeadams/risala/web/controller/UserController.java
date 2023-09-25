@@ -1,14 +1,20 @@
 package dev.tolulopeadams.risala.web.controller;
 
+import dev.tolulopeadams.risala.dto.UserDto;
 import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import dev.tolulopeadams.risala.persistence.model.User;
-import dev.tolulopeadams.risala.requestbody.UserRequestBody;
 import dev.tolulopeadams.risala.service.impl.UserServiceImpl;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,24 +34,21 @@ public class UserController {
     }
 
     @GetMapping("/signup")
-    public String signup() {
+    public String signup(Model model) {
+        UserDto user = new UserDto();
+        model.addAttribute("user", user);
         return "signup";
     }
 
     @PostMapping("/user/registration")
-    public String registerUser(@RequestBody UserRequestBody requestBody){
-        User user = userRepository.findByEmail(requestBody.getEmail());
+    public ResponseEntity<?> userRegistration(HttpServletRequest servletRequest,
+                                             @RequestBody UserDto userDto){
+        User existing = userRepository.findByEmail(userDto.getEmail());
 
-        if(user != null){
-//            ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//                    .body("An account with that email address already exists");
-            return "welcome";
-        }
+        userServiceImpl.registerUser(userDto);
 
-        userServiceImpl.registerUser(requestBody.getEmail(), requestBody.getPassword());
-//        return ResponseEntity.ok("User registration successful").;
-        return "welcome";
-
+        String redirectUrl = getAppUrl(servletRequest) + "/index";
+        return ResponseEntity.ok().body("{\"redirectUrl\": \"" + redirectUrl + "\"}");
     }
 
 
@@ -54,10 +57,10 @@ public class UserController {
         return "login";
     }
 
-//    @GetMapping("/@{username}")
-//    public ModelAndView findByUserName(@PathVariable String username, ModelMap model){
-//        User user = userRepository.findByUserNameIgnoreCase(username);
-//        model.addAttribute("user", user);
-//        return new ModelAndView("user-profile", model);
-//    }
+    private String getAppUrl(HttpServletRequest request) {
+        return "http://" +
+                request.getServerName() + ":" +
+                request.getServerPort() +
+                request.getContextPath();
+    }
 }

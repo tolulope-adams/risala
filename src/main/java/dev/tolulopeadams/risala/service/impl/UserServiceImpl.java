@@ -1,13 +1,12 @@
 package dev.tolulopeadams.risala.service.impl;
 
+import dev.tolulopeadams.risala.dto.UserDto;
 import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import dev.tolulopeadams.risala.persistence.model.User;
 import dev.tolulopeadams.risala.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
@@ -22,8 +21,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public void registerUser(String email, String password){
-        this.save(this.createUser(email, password));
+    public void registerUser(UserDto userDto){
+        User user = this.createUser(userDto.getEmail(), userDto.getPassword());
+        this.save(user);
     }
 
     @Override
