@@ -35,20 +35,26 @@ public class UserController {
 
     @GetMapping("/signup")
     public String signup(Model model) {
-        UserDto user = new UserDto();
-        model.addAttribute("user", user);
+        UserDto userDto = new UserDto();
+        model.addAttribute("userDto", userDto);
         return "signup";
     }
 
     @PostMapping("/user/registration")
-    public ResponseEntity<?> userRegistration(HttpServletRequest servletRequest,
-                                             @RequestBody UserDto userDto){
+    public String userRegistration(@Valid @ModelAttribute UserDto userDto,
+                                   BindingResult result,
+                                   Model model){
         User existing = userRepository.findByEmail(userDto.getEmail());
 
+        if (existing != null) {
+            result.rejectValue("email", null, "There is already an account registered with that email");
+        }
+        if (result.hasErrors()) {
+            model.addAttribute("userDto", existing);
+            return "redirect:/signup";
+        }
         userServiceImpl.registerUser(userDto);
-
-        String redirectUrl = getAppUrl(servletRequest) + "/index";
-        return ResponseEntity.ok().body("{\"redirectUrl\": \"" + redirectUrl + "\"}");
+        return "redirect:/welcome";
     }
 
 
@@ -57,10 +63,9 @@ public class UserController {
         return "login";
     }
 
-    private String getAppUrl(HttpServletRequest request) {
-        return "http://" +
-                request.getServerName() + ":" +
-                request.getServerPort() +
-                request.getContextPath();
+    public static String getHttpUrl(HttpServletRequest request, String endpoint) {
+        String baseUrl = "http://" + request.getServerName() + ":" +
+                request.getServerPort() + request.getContextPath();
+        return baseUrl + endpoint;
     }
 }

@@ -1,49 +1,26 @@
-
 * {
     box-sizing: border-box;
-/*    outline-style: dashed;*/
-/*    outline-width: 2px;*/
 }
 
-.card{
-    width: fit-content;
-    display: flex;
-    flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 4px;
-    box-shadow: 4px;
+html{
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-.signup-container{
-
+body {
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-
+    margin: 0;
+    background: lightgray;
 }
-
-.form-header{
-    text-align: center;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-input{
-    padding: 16px;
-    margin: 8px;
-}
-
 
 .card {
     width: 60vw;
-    height: 80vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
     border-radius: 8px;
-    box-shadow: 10px 10px 10px;
 }
 
 .left-side {
@@ -53,8 +30,28 @@ input{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 36px;
     background: #2563EB;
     border-radius: 8px 0px 0px 8px;
+}
+
+.left-side * {
+    color: white;
+}
+
+.txt-login{
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 36px;
+    font-weight: 100;
+}
+
+.btn-login {
+    padding: 12px 48px 12px 48px;
+    border: 1px solid;
+    border-radius: 48px;
+    border-color: white;
+    background: none;
 }
 
 .right-side {
@@ -68,8 +65,54 @@ input{
     border-radius: 0px 8px 8px 0px;
 }
 
+.txt-signup-header {
+    text-align: center;
+    color: #2563EB;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.icon {
+    width: 36px;
+    height: 36px;
+    margin: 0px 4px 0px 4px;
+    padding: 8px;
+    border: 1px solid;
+    border-color: lightgray;
+    border-radius: 50%;
+}
+
+.txt-signup-desc {
+    font-size: 14px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    width: 60%;
+    margin: 4px 0px 4px 0px;
+    padding: 16px;
+    border-radius: 4px;
+    border-width: 0px;
+    background: lightgray;
+}
+
 .btn-signup{
+    width: fit-content;
     padding: 12px 48px 12px 48px;
+    margin: 16px 0px 0px 0px;
+    border: 1px solid;
     border-radius: 48px;
     color: white;
     background: #2563EB;

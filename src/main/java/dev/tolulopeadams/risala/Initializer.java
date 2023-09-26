@@ -17,7 +17,6 @@ class Initializer implements CommandLineRunner {
     public void run(String... strings) {
         System.out.println("Initializing repositories");
         insertUsers(userRepository);
-        System.out.println(userRepository.count());
     }
 
     private void insertUsers(UserRepository repository) {
