@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+html{
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+/*    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+}
+
 header{
     display: flex;
     flex-direction: row;
@@ -32,4 +37,65 @@ header{
 .btn-avatar *{
     width: 48px;
     height: 48px;
+}
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    grid-template-rows: auto auto;
+    gap: 0px;
+/*    grid-auto-flow: row-reverse;*/
+}
+
+.grid-container > img {
+    grid-row: span 2; /* Span 2 rows to match the image's height */
+}
+
+.grid-item {
+    border: 1px solid #ccc; /* Add a border for visualization */
+    padding: 20px; /* Add some padding for the grid items */
+}
+
+.user-menu {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: 36px;
+    margin-right: 36px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 2px 2px 2px 2px;
+}
+
+.user-menu .user-icon {
+    width: 24px;
+    height: 24px;
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    color: #ccc;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+}
+
+.menu-item > img {
+    width: 24px;
+    height: 24px;
+}
+
+.menu-item > span{
+    width: 20vw;
+    font-size: 18px;
+    margin-left: 8px;
 }
