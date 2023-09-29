@@ -28,9 +28,9 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/welcome")
+    @GetMapping("/")
     public String welcome() {
-        return "index";
+        return "welcome";
     }
 
     @GetMapping("/signup")
