@@ -1,55 +1,29 @@
 package dev.tolulopeadams.risala.persistence.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "posts")
 @Entity
-public class Post extends Content {
+public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id", unique = true)
+    @JoinColumn(name = "author_id", unique = true, nullable = false)
     private User user;
 
-////    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private final List<Comment> comments;
-//
-////    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-////    @JoinColumn(name = "like_id")
-//    private final List<Like> likes;
+    @Column(name = "content", nullable = false)
+    private String content;
 
-    public Post(){
-//        this.comments = new ArrayList<>();
-//        this.likes = new ArrayList<>();
-
-    }
-//    public List<Comment> getComments() {
-//        return comments;
-//    }
-//
-//    public void addComment(Comment comment) {
-//        this.comments.add(comment);
-//    }
-//
-//    public void removeComment(Comment comment) {
-//        this.comments.remove(comment);
-//    }
-//
-//    public List<Like> getLikes() {
-//        return likes;
-//    }
-//
-//    public void addLike(Like like) {
-//        this.likes.add(like);
-//    }
-//
-//    public void removeLike(Like like) {
-//        this.likes.remove(like);
-//    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+    private String tolu;
 }

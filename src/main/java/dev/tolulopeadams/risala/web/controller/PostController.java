@@ -1,55 +1,43 @@
 package dev.tolulopeadams.risala.web.controller;
 
+import dev.tolulopeadams.risala.dto.PostDto;
 import dev.tolulopeadams.risala.persistence.model.Post;
+import dev.tolulopeadams.risala.service.impl.PostServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@RequestMapping("/blog")
 public class PostController {
-
     @Autowired
-    private BlogPostService blogPostService;  // Assume you have a service for managing blog posts
+    private PostServiceImpl postService;
 
-    @GetMapping("/feed")
-    public String listPosts(Model model) {
-        List<Post> blogPosts = blogPostService.getAllPosts();
-        model.addAttribute("posts", blogPosts);
-        return "post/list";
+    @PostMapping("/post/create")
+    public String createPost(@ModelAttribute PostDto postDto){
+        postService.createPost(postDto);
+        return "redirect:/feed";
     }
 
-    @GetMapping("/post")
-    public String createPostForm(Model model) {
-        model.addAttribute("post", new BlogPost());
-        return "post/create";
-    }
-
-    @PostMapping("/create")
-    public String createPost(@ModelAttribute BlogPost post) {
-        blogPostService.createPost(post);
-        return "redirect:/blog/list";
-    }
-
-    @GetMapping("/{userName}/{postId}")
-    public String readPost(@PathVariable String userName,
-                           @PathVariable String postId, Model model) {
-        Post post = null;
+    @GetMapping("/posts/{id}")
+    public String findPostById(@PathVariable Long id, Model model) {
+        Post post = postService.findPostById(id);
         model.addAttribute("post", post);
         return "post";
     }
 
-    @PostMapping("/edit")
-    public String editPost(@ModelAttribute BlogPost post) {
-        blogPostService.updatePost(post);
-        return "redirect:/blog/list";
+    @PostMapping("post/{id}/edit")
+    public String editPost(@PathVariable Long id, @ModelAttribute PostDto postDto) {
+        postService.updatePost(id, postDto);
+        return "redirect:/feed";
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("posts/{id}/delete")
     public String deletePost(@PathVariable Long id) {
-        blogPostService.deletePost(id);
-        return "redirect:/blog/list";
+        postService.deletePost(id);
+        return "redirect:/feed";
     }
 }
