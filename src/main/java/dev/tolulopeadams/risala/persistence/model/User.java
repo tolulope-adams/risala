@@ -32,7 +32,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private final List<Post> posts = new ArrayList<>();
 
-
     public void addPost(Post post) {
         this.posts.add(post);
     }
@@ -43,7 +42,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User {" +
                 "userId=" + this.getUserId() + ";" +
                 "userName=" + this.getUserName() + ";" +
                 "}";

@@ -5,6 +5,7 @@ import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import dev.tolulopeadams.risala.persistence.model.User;
 import dev.tolulopeadams.risala.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByEmail(@NonNull String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public User createUser(String email, String password){
         User user = new User();
         user.setEmail(email);
@@ -40,6 +46,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         userRepository.save(user);
+    }
+
+    @Override
+    public void changeUserPassword(User user, String password) {
+
     }
 
     @Override

@@ -1,7 +1,6 @@
 package dev.tolulopeadams.risala.persistence.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +23,4 @@ public class Post {
 
     @Column(name = "content", nullable = false)
     private String content;
-
-    private String tolu;
 }

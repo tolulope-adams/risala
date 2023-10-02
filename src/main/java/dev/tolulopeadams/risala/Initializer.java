@@ -1,24 +1,42 @@
 package dev.tolulopeadams.risala;
 
-import dev.tolulopeadams.risala.persistence.dao.UserRepository;
+import dev.tolulopeadams.risala.dto.PostDto;
+import dev.tolulopeadams.risala.dto.UserDto;
+import dev.tolulopeadams.risala.service.impl.PostServiceImpl;
+import dev.tolulopeadams.risala.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 class Initializer implements CommandLineRunner {
+    @Autowired
+    UserServiceImpl userServiceImpl;
+    @Autowired
+    PostServiceImpl postServiceImpl;
 
-    private final UserRepository userRepository;
+    public Initializer() {
 
-    public Initializer(UserRepository userRepository) {
-        this.userRepository = userRepository;
     }
 
     @Override
     public void run(String... strings) {
-        System.out.println("Initializing repositories");
-        insertUsers(userRepository);
+        createUsers();
+        createPosts();
     }
 
-    private void insertUsers(UserRepository repository) {
+    private void createUsers() {
+        System.out.println("Creating dummy users");
+        userServiceImpl.registerUser(
+                new UserDto("Tolulope Adams",
+                        "tolulopeadams700@gmail.com",
+                        "ris@l@2o23"));
+    }
+
+    private void createPosts(){
+        PostDto postDto = new PostDto();
+        postDto.setUser(userServiceImpl.findUserByEmail("tolulopeadams700@gmail.com"));
+        postDto.setContent("Hi guys, welcome to my YouTube channel.");
+        postServiceImpl.createPost(postDto);
     }
 }
