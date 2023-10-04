@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,6 +27,10 @@
                 <a class="nav-link" href="#">More</a>
             </div>
         </div>
+
+        <li th:each="post : ${postList}">
+            <span th:text="${data}"></span>
+        </li>
 
         <!--                <button type="button">-->
         <!--                    <img src="/static/icons/search.png">-->

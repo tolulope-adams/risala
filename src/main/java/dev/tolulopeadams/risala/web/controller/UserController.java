@@ -2,6 +2,7 @@ package dev.tolulopeadams.risala.web.controller;
 
 import dev.tolulopeadams.risala.dto.UserDto;
 import dev.tolulopeadams.risala.persistence.dao.UserRepository;
+import dev.tolulopeadams.risala.persistence.model.Post;
 import dev.tolulopeadams.risala.persistence.model.User;
 import dev.tolulopeadams.risala.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class UserController {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
@@ -27,8 +31,13 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/feed")
-    public String home() {
-        return "home";
+    public String feed(Model model) {
+
+        List<Post> postList = new ArrayList<>();
+
+        model.addAttribute("postList", postList);
+
+        return "feed";
     }
 
     @GetMapping("/signup")
@@ -52,7 +61,7 @@ public class UserController {
             return "redirect:/signup";
         }
         userServiceImpl.registerUser(userDto);
-        return "redirect:/welcome";
+        return "redirect:/feed";
     }
 
 
