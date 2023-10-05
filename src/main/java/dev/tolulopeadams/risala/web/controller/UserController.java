@@ -1,9 +1,9 @@
 package dev.tolulopeadams.risala.web.controller;
 
 import dev.tolulopeadams.risala.dto.UserDto;
-import dev.tolulopeadams.risala.persistence.dao.UserRepository;
 import dev.tolulopeadams.risala.persistence.model.Post;
 import dev.tolulopeadams.risala.persistence.model.User;
+import dev.tolulopeadams.risala.service.impl.PostServiceImpl;
 import dev.tolulopeadams.risala.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,15 +27,12 @@ public class UserController {
     UserServiceImpl userServiceImpl;
 
     @Autowired
-    UserRepository userRepository;
+    PostServiceImpl postServiceImpl;
 
     @GetMapping("/feed")
     public String feed(Model model) {
-
-        List<Post> postList = new ArrayList<>();
-
+        List<Post> postList = postServiceImpl.getAllPosts();
         model.addAttribute("postList", postList);
-
         return "feed";
     }
 
@@ -49,9 +45,9 @@ public class UserController {
 
     @PostMapping("/user/register")
     public String registerUser(@Valid @ModelAttribute UserDto userDto,
-                                   BindingResult result,
-                                   Model model){
-        User existing = userRepository.findByEmail(userDto.getEmail());
+                               BindingResult result,
+                               Model model) {
+        User existing = userServiceImpl.findUserByEmail(userDto.getEmail());
 
         if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");

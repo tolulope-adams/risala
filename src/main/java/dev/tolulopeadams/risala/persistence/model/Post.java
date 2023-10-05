@@ -1,6 +1,8 @@
 package dev.tolulopeadams.risala.persistence.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,17 +12,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "posts")
 @Entity
-public class Post {
+public class Post extends Content {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+    @Column(name = "thumbnail")
+    private String thumbNail;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "author_id", unique = true, nullable = false)
-    private User user;
+    @Column(name = "title", nullable = false)
+    private String title;
 
-    @Column(name = "content", nullable = false)
-    private String content;
 }

@@ -33,9 +33,10 @@ class Initializer implements CommandLineRunner {
                         "ris@l@2o23"));
     }
 
-    private void createPosts(){
+    private void createPosts() {
         PostDto postDto = new PostDto();
         postDto.setUser(userServiceImpl.findUserByEmail("tolulopeadams700@gmail.com"));
+        postDto.setTitle("Blog Dummy");
         postDto.setContent("Hi guys, welcome to my YouTube channel.");
         postServiceImpl.createPost(postDto);
     }

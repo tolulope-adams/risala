@@ -1,29 +1,12 @@
 package dev.tolulopeadams.risala.persistence.model;
 
+import jakarta.persistence.*;
+
 //@Entity
 public class Like {
-    private Long likeId;
 
-    private Long userId;
-
-
-    public Like(){
-
-    }
-
-    public Long getLikeId() {
-        return likeId;
-    }
-
-    public void setLikeId(Long likeId) {
-        this.likeId = likeId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+//    @Id
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user_id", unique = true, nullable = false)  // Foreign key column
+//    private Long userId;
 }

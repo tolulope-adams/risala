@@ -15,21 +15,21 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="user_id", nullable=false, unique=true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id", nullable = false, unique = true)
     private Long userId;
 
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="user_name", unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_name", unique = true)
     private String userName;
-    @Column(name="email", nullable=false, unique=true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
-    @Column(name="pass_hash", nullable=false)
+    @Column(name = "pass_hash", nullable = false)
     private String passwordHash;
-    @Column(name="pass_salt", nullable=false, unique=true)
+    @Column(name = "pass_salt", nullable = false, unique = true)
     private String passwordSalt;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private final List<Post> posts = new ArrayList<>();
 
     public void addPost(Post post) {

@@ -1,25 +1,12 @@
 package dev.tolulopeadams.risala.persistence.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.NoArgsConstructor;
 
-public class Comment {
-
-    private Post post;
-
-    private final List<Like> likes;
-
-
-    public Comment(){
-        this.likes = new ArrayList<>();
-
-    }
-    public Post getPost() {
-        return post;
-    }
-
-    public List<Like> getLikes() {
-        return likes;
-    }
+@NoArgsConstructor
+@Table(name = "comments")
+@Entity
+public class Comment extends Content {
 
 }
