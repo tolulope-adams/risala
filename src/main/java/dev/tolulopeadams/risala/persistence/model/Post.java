@@ -1,11 +1,12 @@
 package dev.tolulopeadams.risala.persistence.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,5 +20,16 @@ public class Post extends Content {
 
     @Column(name = "title", nullable = false)
     private String title;
+
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
+    private final List<Reaction> reactions = new ArrayList<>();
+
+    public Integer getReactionCount() {
+        return reactions.size();
+    }
+
+    public void addReaction(Reaction reaction) {
+        reactions.add(reaction);
+    }
 
 }

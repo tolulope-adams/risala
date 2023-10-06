@@ -11,33 +11,43 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class PostController {
+
     @Autowired
-    private PostServiceImpl postService;
+    PostServiceImpl postServiceImpl;
+
+    @GetMapping("/feed")
+    public String feed(Model model) {
+        List<Post> postList = postServiceImpl.getAllPosts();
+        model.addAttribute("postList", postList);
+        return "feed";
+    }
 
     @PostMapping("/post/create")
-    public String createPost(@ModelAttribute PostDto postDto){
-        postService.createPost(postDto);
+    public String createPost(@ModelAttribute PostDto postDto) {
+        postServiceImpl.createPost(postDto);
         return "redirect:/feed";
     }
 
     @GetMapping("/posts/{id}")
     public String findPostById(@PathVariable Long id, Model model) {
-        Post post = postService.findPostById(id);
+        Post post = postServiceImpl.findPostById(id);
         model.addAttribute("post", post);
         return "post";
     }
 
     @PostMapping("post/{id}/edit")
     public String editPost(@PathVariable Long id, @ModelAttribute PostDto postDto) {
-        postService.updatePost(id, postDto);
+        postServiceImpl.updatePost(id, postDto);
         return "redirect:/feed";
     }
 
     @GetMapping("posts/{id}/delete")
     public String deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+        postServiceImpl.deletePost(id);
         return "redirect:/feed";
     }
 }

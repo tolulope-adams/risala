@@ -5,15 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "users")
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+@Table(name = "users")
+@Entity
+
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false, unique = true)

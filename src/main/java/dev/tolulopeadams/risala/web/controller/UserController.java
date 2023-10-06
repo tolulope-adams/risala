@@ -26,16 +26,6 @@ public class UserController {
     @Autowired
     UserServiceImpl userServiceImpl;
 
-    @Autowired
-    PostServiceImpl postServiceImpl;
-
-    @GetMapping("/feed")
-    public String feed(Model model) {
-        List<Post> postList = postServiceImpl.getAllPosts();
-        model.addAttribute("postList", postList);
-        return "feed";
-    }
-
     @GetMapping("/signup")
     public String signup(Model model) {
         UserDto userDto = new UserDto();

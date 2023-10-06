@@ -28,20 +28,14 @@ public abstract class Content {
     @Column(name = "date_created")
     private String dateCreated;
 
-//    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
-//    private final List<Like> likes = new ArrayList<>();
+    @OneToMany(mappedBy = "content", cascade = CascadeType.ALL)
+    private final List<Reaction> reactions = new ArrayList<>();
 
-    @Column(name = "likes_count")
-    protected Long likesCount = 0L;
-
-    @Column(name = "comments_count")
-    protected Long commentsCount = 0L;
-
-    public void incrementLikesCount() {
-        ++likesCount;
+    public Integer getReactionCount() {
+        return reactions.size();
     }
 
-    public void incrementCommentsCount() {
-        ++commentsCount;
+    public void addReaction(Reaction reaction) {
+        reactions.add(reaction);
     }
 }
