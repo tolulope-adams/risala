@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/static/css/feed.css">
 
 </head>
-<body class="vh-100 d-flex flex-column">
+<body class="vh-100">
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -38,33 +38,31 @@
     <main class="list-group p-5">
         <div class="container-lg list-group-item border border-secondary-subtle rounded"
              th:each="post : ${postList}">
-            <div>
-                <div class="d-flex flex-row fs-6">
-                    <img class="rounded-circle img-2fs"
-                         src="/static/icons/img_placeholder.jpg">
-                    <div class="container-fluid fs-6">
-                        <p class="row m-0">Tolulope Adams</p>
-                        <p class="row m-0">tolulope.hasnode.dev &bull; Sep 2023</p>
-                    </div>
+            <div class="d-flex flex-row fs-6">
+                <img class="rounded-circle img-2fs"
+                     src="/static/icons/img_placeholder.jpg">
+                <div class="container-fluid fs-6">
+                    <p class="row m-0">Tolulope Adams</p>
+                    <p class="row m-0">tolulope.hasnode.dev &bull; Sep 2023</p>
                 </div>
-                <div class="row">
-                    <div class="d-flex flex-row">
-                        <div>
-                            <h1 class="title" th:text="${post.title}"></h1>
-                            <p th:text="${post.content}"></p>
-                        </div>
-                        <!--                        <img class="cover-image" src="">-->
-                    </div>
+            </div>
+            <div class="d-flex flex-row">
+                <div style="height: 68px;" class="w-100 container">
+                    <h1 class="title" th:text="${post.title}"></h1>
+                    <p th:text="${post.content}"></p>
                 </div>
-                <div class="d-flex flex-row fs-6">
-                    <a href="#" class="text-decoration-none">
-                        <img class="d-inline-block img-1fs" src="/static/icons/discuss.svg">
-                        <span>Discuss</span>
-                    </a>
-                    <span th:text="'&bull;' + ${post.title} + ' likes &bull; ' + ${post.title} + 'reads'"></span>
-                    <div class="flex-grow-1 d-flex justify-content-end">
-                        <img class="d-inline-block img-1fs" src="/static/icons/bookmark-add.svg">
-                    </div>
+                <img class="img-2fs" src="/static/icons/img_placeholder.jpg">
+            </div>
+            <div class="d-flex flex-row fs-6">
+                <a href="#" class="text-decoration-none">
+                    <img class="d-inline-block img-1fs" src="/static/icons/discuss.svg">
+                    <span>Discuss</span>
+                </a>
+                <span th:text="'&bull;' + ${post.title} + ' likes &bull; ' + ${post.title} + 'reads'"></span>
+                <div class="flex-grow-1 d-flex align-items-center justify-content-end">
+                    <a class="btn btn-secondary rounded-pill mx-2">Tag</a>
+                    <a class="btn btn-secondary rounded-pill mx-2">Tag</a>
+                    <img class="d-inline-block img-1fs" src="/static/icons/bookmark-add.svg">
                 </div>
             </div>
         </div>
