@@ -1,0 +1,16 @@
+html{
+    font-family: Inter;
+
+}
+
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    color: white;
+}
+
+
+
