@@ -33,8 +33,8 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String findPostById(@PathVariable Long id, Model model) {
-        Post post = postServiceImpl.findPostById(id);
+    public String displayPost(@PathVariable Long id, Model model) {
+        Post post = postServiceImpl.readPost(id);
         model.addAttribute("post", post);
         return "post";
     }
