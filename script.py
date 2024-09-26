@@ -5,7 +5,7 @@ def get_git_branches():
     result = subprocess.run(["git", "branch", "-r"], capture_output=True, text=True)
     branches = result.stdout.splitlines()
     branches = [branch.strip() for branch in branches if branch]
-    # branches.pop(0)
+    branches.pop(0)
     return branches
 
 def cherry_pick_commit(commit_hash, target_branches):
