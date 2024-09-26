@@ -17,6 +17,8 @@ import java.io.InputStream;
 
 @Component
 class Initializer implements CommandLineRunner {
+
+    // Added comment here
     private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
